@@ -39,6 +39,10 @@ func (c *Client) callRaw(
 	method string,
 	params Params,
 ) (rawResponse, error) {
+	if c.auth.IsExpired() {
+		c.auth.Refresh()
+	}
+
 	endpoint := fmt.Sprintf("%s/rest/%s.json?auth=%s", c.baseURL, method, c.auth.authToken)
 	var body io.Reader
 	if params != nil {
