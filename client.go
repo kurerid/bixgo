@@ -9,11 +9,11 @@ var DefaultTimeout = time.Second * 15
 
 type Client struct {
 	baseURL    string
-	auth       string
+	auth       *ClientAuth
 	httpClient *http.Client
 }
 
-func NewClient(baseURL, auth string) *Client {
+func NewClient(baseURL string, auth *ClientAuth) *Client {
 	return &Client{
 		baseURL: baseURL,
 		auth:    auth,
@@ -23,7 +23,7 @@ func NewClient(baseURL, auth string) *Client {
 	}
 }
 
-func NewClientWithTimeout(baseURL, auth string, timeout time.Duration) *Client {
+func NewClientWithTimeout(baseURL string, auth *ClientAuth, timeout time.Duration) *Client {
 	return &Client{
 		baseURL: baseURL,
 		auth:    auth,

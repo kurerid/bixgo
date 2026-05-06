@@ -34,5 +34,8 @@ func (r rawResponse) BitrixError() error {
 	if err := json.Unmarshal(r, &bitrixErr); err != nil {
 		return err
 	}
-	return &bitrixErr
+	if bitrixErr == (Error{}) {
+		return nil
+	}
+	return bitrixErr
 }

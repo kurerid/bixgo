@@ -39,7 +39,7 @@ func (c *Client) callRaw(
 	method string,
 	params Params,
 ) (rawResponse, error) {
-	endpoint := fmt.Sprintf("%s/rest/%s.json?auth=%s", c.baseURL, method, c.auth)
+	endpoint := fmt.Sprintf("%s/rest/%s.json?auth=%s", c.baseURL, method, c.auth.authToken)
 	var body io.Reader
 	if params != nil {
 		b, err := json.Marshal(params)
