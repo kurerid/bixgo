@@ -13,7 +13,7 @@ type Response[T any] struct {
 
 // ListResponse представляет собой структуру ответа от API Bitrix24 для списков.
 type ListResponse[T any] struct {
-	Result []T `json:"result"`
+	Result T   `json:"result"`
 	Total  int `json:"total"`
 	Error
 }
