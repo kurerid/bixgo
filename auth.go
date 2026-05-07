@@ -3,6 +3,7 @@ package bixgo
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"time"
 )
@@ -52,10 +53,11 @@ func (c *ClientAuth) Refresh() error {
 	}
 
 	if response.StatusCode != http.StatusOK {
+		bodyBytes, _ := io.ReadAll(response.Body)
 		return fmt.Errorf(
 			"failed to refresh token. status code: %d, body: %s",
 			response.StatusCode,
-			response.Body,
+			string(bodyBytes),
 		)
 	}
 
