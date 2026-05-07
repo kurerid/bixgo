@@ -89,12 +89,6 @@ func (c *Client) callRaw(
 }
 
 func isBixgoResponseStruct(result any) bool {
-	switch result.(type) {
-	case *Response[any]:
-		return true
-	case *ListResponse[any]:
-		return true
-	default:
-		return false
-	}
+	_, ok := result.(BixgoResponseMarker)
+	return ok
 }
