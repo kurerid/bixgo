@@ -69,16 +69,16 @@ func (c *Client) callRaw(
 	}
 	defer resp.Body.Close()
 
+	responseBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read response: %w", err)
+	}
 	// можно добавить проверку HTTP статуса
 	if resp.StatusCode != http.StatusOK {
-		data, _ := io.ReadAll(resp.Body)
-		return nil, fmt.Errorf("http error %d: %s", resp.StatusCode, string(data))
+		return nil, fmt.Errorf("http error %d: %s", resp.StatusCode, string(responseBytes))
 	}
 
-	var raw rawResponse
-	if err := json.NewDecoder(resp.Body).Decode(&raw); err != nil {
-		return nil, fmt.Errorf("decode response: %w", err)
-	}
+	var raw rawResponse = responseBytes
 
 	// обработка ошибки Bitrix
 	if bitrixErr := raw.BitrixError(); bitrixErr != nil {
