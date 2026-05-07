@@ -53,7 +53,10 @@ func (c *ClientAuth) Refresh() error {
 	}
 
 	if response.StatusCode != http.StatusOK {
-		bodyBytes, _ := io.ReadAll(response.Body)
+		bodyBytes, err := io.ReadAll(response.Body)
+		if err != nil {
+			return err
+		}
 		return fmt.Errorf(
 			"failed to refresh token. status code: %d, body: %s",
 			response.StatusCode,
