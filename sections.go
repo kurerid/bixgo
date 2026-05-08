@@ -70,7 +70,7 @@ func (c *Section) UnmarshalJSON(data []byte) error {
 }
 
 /*
-GetCatalogs
+GetCatalogSections
 
 	Возвращает список разделов торгового каталога, используя метод catalog.section.list
 */
@@ -78,7 +78,7 @@ func (c *Client) GetCatalogSections(
 	ctx context.Context,
 	params Params,
 ) (*ListResponse[CatalogsResponse], error) {
-	rawResponse, err := c.callRaw(ctx, catalogsListMethod, params)
+	rawResponse, err := c.callRaw(ctx, sectionsListMethod, params)
 	if err != nil {
 		return nil, err
 	}
