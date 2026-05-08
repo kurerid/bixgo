@@ -58,7 +58,7 @@ type ProductsResponse struct {
 	Products []Product `json:"products"`
 }
 
-const productsListMethod = "catalog.produc.list"
+const productsListMethod = "catalog.product.list"
 
 var productsKnownFields = map[string]struct{}{
 	"id":                 {},
