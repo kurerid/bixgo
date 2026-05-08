@@ -16,7 +16,7 @@ type Catalog struct {
 	SkuPropertyId   *int           `json:"skuPropertyId"`
 	Subscription    string         `json:"subscription"`
 	VatId           *int           `json:"vatId"`
-	CustomFields    map[string]any `json:"custom_fields"`
+	CustomFields    map[string]any `json:"customFields"`
 }
 
 type CatalogsResponse struct {
@@ -25,7 +25,7 @@ type CatalogsResponse struct {
 
 const catalogsListMethod = "catalog.catalog.list"
 
-var knownFields = map[string]struct{}{
+var catalogKnownFields = map[string]struct{}{
 	"id":              {},
 	"iblockId":        {},
 	"iblockTypeId":    {},
@@ -48,14 +48,14 @@ func (c *Catalog) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	customFieldsCount := len(raw) - len(knownFields)
+	customFieldsCount := len(raw) - len(catalogKnownFields)
 	if customFieldsCount <= 0 {
 		return nil
 	}
 
 	c.CustomFields = make(map[string]any, customFieldsCount)
 	for key, val := range raw {
-		if _, found := knownFields[key]; !found {
+		if _, found := catalogKnownFields[key]; !found {
 			var v any
 			if err := json.Unmarshal(val, &v); err != nil {
 				return fmt.Errorf("unmarshal custom field %s: %w", key, err)
