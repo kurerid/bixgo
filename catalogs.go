@@ -7,16 +7,16 @@ import (
 )
 
 type Catalog struct {
-	Id              int    `json:"id"`
-	IblockId        int    `json:"iblockId"`
-	IblockTypeId    string `json:"iblockTypeId"`
-	Lid             string `json:"lid"`
-	Name            string `json:"name"`
-	ProductIblockId *int   `json:"productIblockId"`
-	SkuPropertyId   *int   `json:"skuPropertyId"`
-	Subscription    string `json:"subscription"`
-	VatId           *int   `json:"vatId"`
-	CustomFields    map[string]any
+	Id              int            `json:"id"`
+	IblockId        int            `json:"iblockId"`
+	IblockTypeId    string         `json:"iblockTypeId"`
+	Lid             string         `json:"lid"`
+	Name            string         `json:"name"`
+	ProductIblockId *int           `json:"productIblockId"`
+	SkuPropertyId   *int           `json:"skuPropertyId"`
+	Subscription    string         `json:"subscription"`
+	VatId           *int           `json:"vatId"`
+	CustomFields    map[string]any `json:"custom_fields"`
 }
 
 type CatalogsResponse struct {
@@ -67,6 +67,11 @@ func (c *Catalog) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+/*
+GetCatalogs
+
+	Возвращает список каталогов, используя метод catalog.catalog.list
+*/
 func (c *Client) GetCatalogs(
 	ctx context.Context,
 	params Params,
