@@ -12,3 +12,9 @@ func (b *BitrixBoolean) UnmarshalJSON(data []byte) error {
 	*b = s == "Y" || s == "y"
 	return nil
 }
+
+type BitrixProductPicture struct {
+	Id         string `json:"id"`
+	Url        string `json:"url"`
+	UrlMachine string `json:"urlMachine"`
+}
