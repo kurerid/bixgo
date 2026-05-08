@@ -156,12 +156,12 @@ GetProducts
 func (c *Client) GetProducts(
 	ctx context.Context,
 	params Params,
-) (*ListResponse[CatalogsResponse], error) {
+) (*ListResponse[ProductsResponse], error) {
 	rawResponse, err := c.callRaw(ctx, productsListMethod, params)
 	if err != nil {
 		return nil, err
 	}
-	var result ListResponse[CatalogsResponse]
+	var result ListResponse[ProductsResponse]
 	err = json.Unmarshal(rawResponse, &result)
 	if err != nil {
 		return nil, err

@@ -77,12 +77,12 @@ GetCatalogSections
 func (c *Client) GetCatalogSections(
 	ctx context.Context,
 	params Params,
-) (*ListResponse[CatalogsResponse], error) {
+) (*ListResponse[SectionsResponse], error) {
 	rawResponse, err := c.callRaw(ctx, sectionsListMethod, params)
 	if err != nil {
 		return nil, err
 	}
-	var result ListResponse[CatalogsResponse]
+	var result ListResponse[SectionsResponse]
 	err = json.Unmarshal(rawResponse, &result)
 	if err != nil {
 		return nil, err
