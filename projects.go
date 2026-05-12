@@ -62,7 +62,7 @@ func (p *ProjectOrGroup) UnmarshalJSON(data []byte) error {
 		return err
 	}
 
-	unknownCount := len(raw) - len(productsKnownFields)
+	unknownCount := len(raw) - len(projectsKnownFields)
 	if unknownCount <= 0 {
 		return nil
 	}
