@@ -14,7 +14,7 @@ type TasksResponse struct {
 	Tasks []Task `json:"tasks"`
 }
 
-const taskListMethod = "task.task.list"
+const taskListMethod = "tasks.task.list"
 
 var taskKnownFields = map[string]struct{}{}
 
