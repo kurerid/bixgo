@@ -12,7 +12,7 @@ type Task struct {
 	Title                string                  `json:"title"`
 	Description          string                  `json:"description"`
 	ChatId               *string                 `json:"chatId"`
-	Mark                 string                  `json:"mark"`
+	Mark                 *string                 `json:"mark"`
 	Priority             string                  `json:"priority"`
 	Multitask            BitrixBoolean           `json:"multitask"`
 	NotViewed            BitrixBoolean           `json:"notViewed"`
@@ -70,13 +70,13 @@ type Task struct {
 	Accomplices          []string                `json:"accomplices"`
 	Checklist            []BitrixChecklistItem   `json:"checklist"`
 	Group                BitrixGroup             `json:"group"`
-	Creator              BitrixUserDescription   `json:"creator"`
-	Responsible          BitrixUserDescription   `json:"responsible"`
+	Creator              *BitrixUserDescription  `json:"creator"`
+	Responsible          *BitrixUserDescription  `json:"responsible"`
 	AccomplicesData      []BitrixUserDescription `json:"accomplicesData"`
 	AuditorsData         any                     `json:"auditorsData"`
 	NewCommentsCount     int                     `json:"newCommentsCount"`
 	Action               BitrixAction            `json:"action"`
-	CheckListTree        CheckListTree           `json:"checkListTree"`
+	CheckListTree        *CheckListTree          `json:"checkListTree"`
 	CheckListCanAdd      BitrixBoolean           `json:"checkListCanAdd"`
 	UFCRMTask            any                     `json:"ufCrmTask"`
 	UFTaskWebDavFiles    any                     `json:"ufTaskWebdavFiles"`
@@ -91,7 +91,81 @@ type TasksResponse struct {
 const taskListMethod = "tasks.task.list"
 
 var taskKnownFields = map[string]struct{}{
-	"id": {},
+	"id":                   {},
+	"parentId":             {},
+	"title":                {},
+	"description":          {},
+	"chatId":               {},
+	"mark":                 {},
+	"priority":             {},
+	"multitask":            {},
+	"notViewed":            {},
+	"replicate":            {},
+	"stageId":              {},
+	"sprintId":             {},
+	"backlogId":            {},
+	"createdBy":            {},
+	"createdDate":          {},
+	"responsibleId":        {},
+	"changedBy":            {},
+	"changedDate":          {},
+	"statusChangedBy":      {},
+	"closedBy":             {},
+	"closedDate":           {},
+	"activityDate":         {},
+	"dateStart":            {},
+	"deadline":             {},
+	"startDatePlan":        {},
+	"endDatePlan":          {},
+	"guid":                 {},
+	"xmlId":                {},
+	"commentsCount":        {},
+	"serviceCommentsCount": {},
+	"allowChangeDeadline":  {},
+	"allowTimeTracking":    {},
+	"taskControl":          {},
+	"addInReport":          {},
+	"forkedByTemplateId":   {},
+	"timeEstimate":         {},
+	"timeSpentInLogs":      {},
+	"matchWorkTime":        {},
+	"forumTopicId":         {},
+	"forumId":              {},
+	"siteId":               {},
+	"subordinate":          {},
+	"exchangeModified":     {},
+	"exchangeId":           {},
+	"outlookVersion":       {},
+	"viewedDate":           {},
+	"sorting":              {},
+	"durationFact":         {},
+	"isMuted":              {},
+	"isPinned":             {},
+	"isPinnedInGroup":      {},
+	"flowId":               {},
+	"descriptionInBbcode":  {},
+	"status":               {},
+	"statusChangedDate":    {},
+	"durationPlan":         {},
+	"durationType":         {},
+	"favorite":             {},
+	"groupId":              {},
+	"auditors":             {},
+	"accomplices":          {},
+	"checklist":            {},
+	"group":                {},
+	"creator":              {},
+	"responsible":          {},
+	"accomplicesData":      {},
+	"auditorsData":         {},
+	"newCommentsCount":     {},
+	"action":               {},
+	"checkListTree":        {},
+	"checkListCanAdd":      {},
+	"ufCrmTask":            {},
+	"ufTaskWebdavFiles":    {},
+	"ufMailMessage":        {},
+	"customFields":         {},
 }
 
 func (t *Task) UnmarshalJSON(data []byte) error {
