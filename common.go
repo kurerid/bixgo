@@ -46,12 +46,12 @@ type BitrixChecklistItemAction struct {
 }
 
 type BitrixGroup struct {
-	Id             string         `json:"id"`
-	Name           string         `json:"name"`
-	Opened         bool           `json:"opened"`
-	MembersCount   int            `json:"membersCount"`
-	Image          *string        `json:"image"`
-	AdditionalData map[string]any `json:"additionalData"`
+	Id             string  `json:"id"`
+	Name           string  `json:"name"`
+	Opened         bool    `json:"opened"`
+	MembersCount   int     `json:"membersCount"`
+	Image          *string `json:"image"`
+	AdditionalData any     `json:"additionalData"`
 }
 
 type BitrixUserDescription struct {
