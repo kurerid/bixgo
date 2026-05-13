@@ -32,3 +32,11 @@ func NewClientWithTimeout(baseURL string, auth *ClientAuth, timeout time.Duratio
 		},
 	}
 }
+
+func NewClientWithOwnProvider(baseURL string, auth *ClientAuth, httpClient *http.Client) *Client {
+	return &Client{
+		baseURL:    baseURL,
+		auth:       auth,
+		httpClient: httpClient,
+	}
+}
