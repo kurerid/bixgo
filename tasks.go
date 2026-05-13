@@ -165,7 +165,6 @@ var taskKnownFields = map[string]struct{}{
 	"ufCrmTask":            {},
 	"ufTaskWebdavFiles":    {},
 	"ufMailMessage":        {},
-	"customFields":         {},
 }
 
 func (t *Task) UnmarshalJSON(data []byte) error {
