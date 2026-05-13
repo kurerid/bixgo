@@ -11,7 +11,7 @@ type Task struct {
 	ParentId             string                  `json:"parentId"`
 	Title                string                  `json:"title"`
 	Description          string                  `json:"description"`
-	ChatId               *int                    `json:"chatId"`
+	ChatId               *string                 `json:"chatId"`
 	Mark                 string                  `json:"mark"`
 	Priority             string                  `json:"priority"`
 	Multitask            BitrixBoolean           `json:"multitask"`
